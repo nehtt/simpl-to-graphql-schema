@@ -1,0 +1,31 @@
+{
+    "name": "simpl-to-graphql-schema",
+    "version": "1.0.5",
+    "description": "simpl schema to graphql schema converter",
+    "main": "index.js",
+    "dependencies": {
+      "graphql": ">=0.13.2",
+      "moment": ">=2.19.1"
+    },
+    "devDependencies": {
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/nehtt/simpl-to-graphql-schema"
+    },
+    "keywords": [
+      "meteor",
+      "simpl-schema",
+      "graphql",
+      "schema",
+      "converter"
+    ],
+    "author": "Lucas AGUILLON",
+    "contributors": [],
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/nehtt/simpl-to-graphql-schema/issues"
+    },
+    "homepage": "https://github.com/nehtt/simpl-to-graphql-schema"
+  }
+  
