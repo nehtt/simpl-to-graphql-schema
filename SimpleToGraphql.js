@@ -3,7 +3,7 @@ import { getObjectSchema, getFieldSchema } from "./utils/getSchema";
 
 const SchemaBridge = {
 	schema: ({ schema, name, options = {}}) => {
-		const { fields, scalar = [], except, custom, additional = "", print = false } = options;
+		const { fields, scalar = [], except, custom, additional = [], print = false } = options;
 		let GqlSchemaContent;
 		let GraphqlObjsSchema;
 
@@ -19,10 +19,16 @@ const SchemaBridge = {
 		GqlSchemaContent = GqlSchemaContent.reduce((a, b) => `${a}${b}`);
 
 		let scalars = "";
-		if(options && scalar && scalar.length > 0){
+		if(options && scalar && scalar.length > 0) {
 			scalars = scalar.map((value) => `scalar ${value}`);
 			scalars = scalars.reduce((a, b) => `${a}
-${b}`);
+	${b}`);
+		}
+		let toAdd = "";
+		if(options && additional && additional.length > 0) {
+			toAdd = additional.map((value) => `${value}`);
+			toAdd = toAdd.reduce((a, b) => `${a}
+	${b}`);
 		}
 
 		const toReturn =  `
@@ -30,7 +36,7 @@ ${scalars}
 ${GraphqlObjsSchema}
 type ${name} {
     ${GqlSchemaContent}
-    ${additional}
+    ${toAdd}
 }
 `;
 		if (print) {
