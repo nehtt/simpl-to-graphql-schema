@@ -73,17 +73,17 @@ const schemaGql = SimpleToGraphql.schema({
             updatedAt: "Date"
         },
 		// add fields to your generated schema
-		additional: {`
-			checked: Boolean
-			usersList: [Users]
-        `},
+		additional: [
+			'checked: Boolean'
+			'usersList: [Users]'
+    ],
 		// console.log() your generated schema
 		print: true, //default false
 	}
 });
 export default schemaGql;
 ```
-- You resolvers
+- Your resolvers
 
 ```js
 //in case your want to use the built in Date scalar
