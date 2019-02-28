@@ -10,7 +10,8 @@ const SchemaBridge = {
       custom,
       additional = [],
       print = false,
-      extend = false
+      extend = false,
+      inputType = false
     } = options
     let GqlSchemaContent
     let GraphqlObjsSchema
@@ -52,7 +53,7 @@ const SchemaBridge = {
     const toReturn = `
 ${scalars}
 ${GraphqlObjsSchema}
-${extend ? 'extend ' : null}type ${name} {
+${extend ? 'extend ' : null}${inputType ? 'input' : 'type'} ${name} {
     ${GqlSchemaContent}
     ${toAdd}
 }
