@@ -1,31 +1,45 @@
 {
-    "name": "simpl-to-graphql-schema",
-    "version": "1.0.5",
-    "description": "simpl schema to graphql schema converter",
-    "main": "index.js",
-    "dependencies": {
-      "graphql": ">=0.13.2",
-      "moment": ">=2.19.1"
-    },
-    "devDependencies": {
-    },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/nehtt/simpl-to-graphql-schema"
-    },
-    "keywords": [
-      "meteor",
-      "simpl-schema",
-      "graphql",
-      "schema",
-      "converter"
-    ],
-    "author": "Lucas AGUILLON",
-    "contributors": [],
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/nehtt/simpl-to-graphql-schema/issues"
-    },
-    "homepage": "https://github.com/nehtt/simpl-to-graphql-schema"
-  }
-  
+  "name": "simpl-to-graphql-schema",
+  "version": "1.0.5",
+  "description": "simpl schema to graphql schema converter",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "common-tags": "^1.8.0",
+    "graphql": ">=0.13.2",
+    "moment": ">=2.19.1"
+  },
+  "scripts": {
+    "test": "$npm_execpath run jest",
+    "build": "babel src -d dist",
+    "prepare": "$npm_execpath run build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "eslint-config-airbnb-bundle": "^3.0.0",
+    "jest": "^24.1.0",
+    "simpl-schema": "^1.5.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nehtt/simpl-to-graphql-schema"
+  },
+  "keywords": [
+    "meteor",
+    "simpl-schema",
+    "graphql",
+    "schema",
+    "converter"
+  ],
+  "author": "Lucas AGUILLON",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nehtt/simpl-to-graphql-schema/issues"
+  },
+  "homepage": "https://github.com/nehtt/simpl-to-graphql-schema"
+}
