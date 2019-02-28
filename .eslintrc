@@ -1,0 +1,6 @@
+{
+  "extends": ["airbnb-bundle"],
+  "env": {
+    "jest": true
+  }
+}

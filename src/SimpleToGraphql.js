@@ -1,5 +1,7 @@
-import { getFieldsKey } from './utils/getFieldsKey'
-import { getObjectSchema, getFieldSchema } from './utils/getSchema'
+import { stripIndents } from 'common-tags';
+
+import { getFieldsKey } from './utils/getFieldsKey';
+import { getObjectSchema, getFieldSchema } from './utils/getSchema';
 
 const SchemaBridge = {
   schema: ({ schema, name, options = {} }) => {
@@ -11,60 +13,57 @@ const SchemaBridge = {
       additional = [],
       print = false,
       extend = false,
-      inputType = false
-    } = options
-    let GqlSchemaContent
-    let GraphqlObjsSchema
+      inputType = false,
+    } = options;
+    let GqlSchemaContent;
+    let GraphqlObjsSchema;
 
     // Get fields name
-    const fieldName = getFieldsKey({ schema, fields, except })
+    const fieldName = getFieldsKey({ schema, fields, except });
 
     // Get new type definitions
-    GraphqlObjsSchema = fieldName.objectKeys.map(k =>
-      getObjectSchema(schema, k, name, custom)
-    )
+    GraphqlObjsSchema = fieldName.objectKeys.map(k => getObjectSchema(schema, k, name, custom, { inputType }));
+
     GraphqlObjsSchema = GraphqlObjsSchema.length
       ? GraphqlObjsSchema.reduce((a, b) => `${a}${b}`)
-      : ''
+      : '';
 
     // Get GraphQl principal Object content
-    GqlSchemaContent = fieldName.keys.map(key =>
-      getFieldSchema(schema, key, name, custom)
-    )
-    GqlSchemaContent = GqlSchemaContent.reduce((a, b) => `${a}${b}`)
+    GqlSchemaContent = fieldName.keys.map(key => getFieldSchema(schema, key, name, custom));
+    GqlSchemaContent = GqlSchemaContent.reduce((a, b) => `${a}${b}`);
 
-    let scalars = ''
+    let scalars = '';
     if (options && scalar && scalar.length > 0) {
-      scalars = scalar.map(value => `scalar ${value}`)
+      scalars = scalar.map(value => `scalar ${value}`);
       scalars = scalars.reduce(
         (a, b) => `${a}
-	${b}`
-      )
+  ${b}`,
+      );
     }
-    let toAdd = ''
+    let toAdd = '';
     if (options && additional && additional.length > 0) {
-      toAdd = additional.map(value => `${value}`)
+      toAdd = additional.map(value => `${value}`);
       toAdd = toAdd.reduce(
         (a, b) => `${a}
-	${b}`
-      )
+  ${b}`,
+      );
     }
 
-    const toReturn = `
+    const toReturn = stripIndents`
 ${scalars}
 ${GraphqlObjsSchema}
-${extend ? 'extend ' : null}${inputType ? 'input' : 'type'} ${name} {
+${extend ? 'extend ' : ''}${inputType ? 'input' : 'type'} ${name} {
     ${GqlSchemaContent}
     ${toAdd}
 }
-`
+`;
     if (print) {
-      console.log('--------START--------')
-      console.log(toReturn)
-      console.log('---------END---------')
+      console.log('--------START--------');
+      console.log(toReturn);
+      console.log('---------END---------');
     }
-    return toReturn
-  }
-}
+    return toReturn;
+  },
+};
 
-export default SchemaBridge
+export default SchemaBridge;

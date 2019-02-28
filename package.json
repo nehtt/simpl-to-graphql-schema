@@ -7,17 +7,22 @@
     "dist"
   ],
   "dependencies": {
+    "common-tags": "^1.8.0",
     "graphql": ">=0.13.2",
     "moment": ">=2.19.1"
   },
   "scripts": {
+    "test": "$npm_execpath run jest",
     "build": "babel src -d dist",
     "prepare": "$npm_execpath run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4"
+    "@babel/preset-env": "^7.3.4",
+    "eslint-config-airbnb-bundle": "^3.0.0",
+    "jest": "^24.1.0",
+    "simpl-schema": "^1.5.5"
   },
   "repository": {
     "type": "git",
