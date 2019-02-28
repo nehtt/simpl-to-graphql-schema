@@ -3,7 +3,7 @@ import { getObjectSchema, getFieldSchema } from "./utils/getSchema";
 
 const SchemaBridge = {
 	schema: ({ schema, name, options = {}}) => {
-		const { fields, scalar = [], except, custom, additional = [], print = false } = options;
+		const { fields, scalar = [], except, custom, additional = [], print = false, extend = false } = options;
 		let GqlSchemaContent;
 		let GraphqlObjsSchema;
 
@@ -34,7 +34,7 @@ const SchemaBridge = {
 		const toReturn =  `
 ${scalars}
 ${GraphqlObjsSchema}
-type ${name} {
+${extend ? "extend " : null}type ${name} {
     ${GqlSchemaContent}
     ${toAdd}
 }
