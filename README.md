@@ -51,7 +51,7 @@ Items.attachSchema(Schemas);
 - Your GraphQL schema
 
 ```js
-import SimpleToGraphql from 'simpl-to-graphql';
+import SimpleToGraphql from 'simpl-to-graphql-schema';
 import Schemas from './items';
 
 const schemaGql = SimpleToGraphql.schema({ 
@@ -87,7 +87,7 @@ export default schemaGql;
 
 ```js
 //in case your want to use the built in Date scalar
-import { DateScalar } from 'simpl-to-graphql';
+import { DateScalar } from 'simpl-to-graphql-schema';
 // collections
 import Items from '/imports/api/pages/pages'
 
